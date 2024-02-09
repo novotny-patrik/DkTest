@@ -12,17 +12,17 @@ function runScript() {
 
     // Function to extract coordinates from HTML elements
     function extractCoordinates(element) {
-        if (element) {
-            var text = element.textContent;
-            var match = text.match(/\((\d+)\|(\d+)\)/);
-            if (match) {
-                return {
-                    x: parseInt(match[1]),
-                    y: parseInt(match[2])
-                };
-            }
+
+        if(element == null) return null;
+        
+        var text = element.textContent;
+        var match = text.match(/\((\d+)\|(\d+)\)/);
+        if (match) {
+            return {
+                x: parseInt(match[1]),
+                y: parseInt(match[2])
+            };
         }
-        return null;
     }
 
     // Function to calculate distance between two coordinates

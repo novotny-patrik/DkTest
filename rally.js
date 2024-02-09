@@ -13,7 +13,9 @@ function runScript() {
     // Function to extract coordinates from HTML elements
     function extractCoordinates(element) {
 
-        if(element == null) return null;
+        if(element == null) {
+            return null;
+        }
         
         var text = element.textContent;
         var match = text.match(/\((\d+)\|(\d+)\)/);

@@ -12,13 +12,15 @@ function runScript() {
 
     // Function to extract coordinates from HTML elements
     function extractCoordinates(element) {
-        var text = element.textContent;
-        var match = text.match(/\((\d+)\|(\d+)\)/);
-        if (match) {
-            return {
-                x: parseInt(match[1]),
-                y: parseInt(match[2])
-            };
+        if (element) {
+            var text = element.textContent;
+            var match = text.match(/\((\d+)\|(\d+)\)/);
+            if (match) {
+                return {
+                    x: parseInt(match[1]),
+                    y: parseInt(match[2])
+                };
+            }
         }
         return null;
     }
@@ -40,6 +42,12 @@ function runScript() {
     // Extract coordinates from the elements
     var firstCoordinate = extractCoordinates(firstCoordinateElement);
     var secondCoordinate = extractCoordinates(secondCoordinateElement);
+
+    // Check if both coordinates are valid
+    if (!firstCoordinate || !secondCoordinate) {
+        console.error("Invalid coordinates");
+        return;
+    }
 
     // Calculate the distance
     var distance = calculateDistance(firstCoordinate, secondCoordinate);

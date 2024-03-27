@@ -1,1 +1,1 @@
-alert('foo bar baz uka');
+alert('foo bar baz');

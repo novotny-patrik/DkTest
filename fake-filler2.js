@@ -174,7 +174,7 @@ const fillTroops = () => {
     }
 
     let tooMuchPop = filledPop - MIN_POPULATION;
-    let doneRemoving = true//tooMuchPop <= 0;
+    let doneRemoving = tooMuchPop <= 0;
     // Remove some if too much
     for (let i = 0; i < 10 && !doneRemoving; i++) {
 

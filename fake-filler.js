@@ -116,6 +116,7 @@ const createFillButton = () => {
 };
 
 const fillTroops = () => {
+    let ratioSum = 0;
     const ratios = new Map();
     // Calculate ratios
     TROOPS.forEach((population, troop) => {
@@ -123,8 +124,13 @@ const fillTroops = () => {
         const ratio = parseInt(input.value) || 0;
         if (ratio > 0) {
             ratios.set(troop, ratio);
+            ratioSum = ratioSum + ratio;
         }
     });
+
+    if (ratioSum === 0) {
+        return;
+    }
 
     let filledPop = 0;
     // Key troop; Value count

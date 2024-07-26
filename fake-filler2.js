@@ -141,7 +141,7 @@ const fillTroops = () => {
         let keep = parseInt(localStorage.getItem(getLSKey(troop, KEEP))) || 0;
         let min = parseInt(localStorage.getItem(getLSKey(troop, MIN))) || 0;
         if (keep >= 0) availableTroops = availableTroops - keep;
-        if (min > 0) {
+        if (min > 0 && availableTroops > 0) {
             let value = Math.min(min, availableTroops);
             filledPop = filledPop + (population * value);
             result.set(troop, value);
@@ -174,7 +174,7 @@ const fillTroops = () => {
     }
 
     let tooMuchPop = filledPop - MIN_POPULATION;
-    let doneRemoving = tooMuchPop <= 0;
+    let doneRemoving = true//tooMuchPop <= 0;
     // Remove some if too much
     for (let i = 0; i < 10 && !doneRemoving; i++) {
 
@@ -186,9 +186,12 @@ const fillTroops = () => {
                 let removablePop = removableCount * population;
                 // If is possible to remove, then remove
                 if (population <= tooMuchPop && removableCount > 0) {
-                    map.set(troop, troopCount - 1);
-                    filledPop = filledPop - population;
-                    tooMuchPop = tooMuchPop - population;
+                    let value = troopCount - 1;
+                    if (value >= min) {
+                        map.set(troop, value);
+                        filledPop = filledPop - population;
+                        tooMuchPop = tooMuchPop - population;
+                    }
                     if (MIN_POPULATION === filledPop) doneRemoving = true;
                 }
             }

@@ -1259,8 +1259,25 @@ $.getScript(`https://cdn.jsdelivr.net/gh/SaveBankDev/Tribal-Wars-Scripts-SDK@mai
                     try {
                         targetId = document.querySelector("#command-data-form > div:nth-child(9) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span").dataset.id;
                     } catch (e) {
-                        targetId = document.querySelector("#command-data-form > div:nth-child(10) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span").dataset.id;
+                        console.log(e);
                     }
+
+                    if (targetId === null) {
+                        try {
+                            targetId = document.querySelector("#command-data-form > div:nth-child(10) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span").dataset.id;
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+
+                    if (targetId === null) {
+                        try {
+                            targetId = document.querySelector("#command-data-form > div:nth-child(11) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span").dataset.id;
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+
                     if (targetId === row.targetVillageId + "") {
                         let typeToCatapultTarget = commandTypeToCatapultTarget(parseInt(row.type));
                         let selectElement = document.querySelector('#place_confirm_catapult_target select[name="building"]');

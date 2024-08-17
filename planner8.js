@@ -1255,7 +1255,7 @@ $.getScript(`https://cdn.jsdelivr.net/gh/SaveBankDev/Tribal-Wars-Scripts-SDK@mai
 
                 if (isPlace && window.location.href.includes('try=confirm')) {
 
-                    let targetId;
+                    let targetId = null;
                     try {
                         targetId = document.querySelector("#command-data-form > div:nth-child(9) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span").dataset.id;
                     } catch (e) {
@@ -1277,6 +1277,7 @@ $.getScript(`https://cdn.jsdelivr.net/gh/SaveBankDev/Tribal-Wars-Scripts-SDK@mai
                             console.log(e);
                         }
                     }
+                    console.log("targetId " + targetId);
 
                     if (targetId === row.targetVillageId + "") {
                         let typeToCatapultTarget = commandTypeToCatapultTarget(parseInt(row.type));
